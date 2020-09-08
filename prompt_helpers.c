@@ -33,10 +33,10 @@ char *getCurrentUser()
 
 char *getCurrentAbsolutePath()
 {
-    char *currentWorkingDirectory = malloc(BIG_SIZE * sizeof(char));
-    getcwd(currentWorkingDirectory, BIG_SIZE);
+    char *abslouteCWD = malloc(BIG_SIZE * sizeof(char));
+    getcwd(abslouteCWD, BIG_SIZE);
 
-    return currentWorkingDirectory;
+    return abslouteCWD;
 }
 
 // //ABS_PATH
