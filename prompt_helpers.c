@@ -68,6 +68,7 @@ char *getRelativeToRootPath(char *path)
 
     if (isDifferent == 0)
     {
+        // Just fixing the warning cuz strcat expects both parameters to be pointers to null-terminated strings
         char temp[1];
         strcpy(relativePath, "~");
         for (; index < strlen(path); ++index)
@@ -78,4 +79,15 @@ char *getRelativeToRootPath(char *path)
     }
 
     return relativePath;
+}
+
+void presentPrompt(char *path)
+{
+    CURRENT_SYSTEM = getSystemName();
+    CURRENT_USER = getCurrentUser();
+
+    printf("%s%s@%s%s : %s%s ", YELLOW, CURRENT_USER, RED, CURRENT_SYSTEM, CYAN, path);
+    printf(RESET);
+
+    return;
 }
