@@ -1,6 +1,7 @@
 #include "prompt.h"
 
 struct utsname UName;
+char *CUR_SYSTEM;
 
 char *getSystemName()
 {
