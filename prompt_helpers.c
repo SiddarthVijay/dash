@@ -54,4 +54,24 @@ char *getRelativeToRootPath(char *path)
     {
         strcpy(relativePath, path);
     }
+
+    int isDifferent = 0;
+    int index = 0;
+    for (; index < strlen(rootDirectory); ++index)
+    {
+        if (rootDirectory[index] != path[index])
+        {
+            isDifferent = 1;
+            break;
+        }
+    }
+
+    if (isDifferent == 0)
+    {
+        strcpy(relativePath, "~");
+        for (; index < strlen(path); ++index)
+            strcat(relativePath, path[index]);
+    }
+
+    return relativePath;
 }
