@@ -1,5 +1,6 @@
 #include "prompt.h"
 #include "helpers.h"
+#include "globalconstants.h"
 
 struct utsname UName;
 char *CURRENT_SYSTEM;
@@ -28,6 +29,14 @@ char *getCurrentUser()
     receivedCheck(CURRENT_USER);
 
     return CURRENT_USER;
+}
+
+char *getCurrentAbsolutePath()
+{
+    char *currentWorkingDirectory = malloc(BIG_SIZE * sizeof(char));
+    getcwd(currentWorkingDirectory, BIG_SIZE);
+
+    return currentWorkingDirectory;
 }
 
 // //ABS_PATH
