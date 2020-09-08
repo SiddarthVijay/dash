@@ -2,3 +2,4 @@
 
 void clearScreen();
 void receivedCheck();
+void setRootDirectory(char *);

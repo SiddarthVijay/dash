@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include "globalconstants.h"
 
 // Clear terminal screen
 void clearScreen()
@@ -15,4 +16,11 @@ void receivedCheck(char *var)
         perror("Error retrieving object: ");
         exit(0);
     }
+}
+
+void setRootDirectory(char *root)
+{
+    rootDirectory = root;
+
+    return;
 }

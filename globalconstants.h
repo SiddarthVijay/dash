@@ -8,3 +8,5 @@
 
 #define BIG_SIZE 1000
 #define MAX_SIZE 100000
+
+char *rootDirectory;
