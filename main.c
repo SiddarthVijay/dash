@@ -9,5 +9,7 @@ int main()
     printf("%s", getCurrentAbsolutePath());
     printf("\n");
     printf("%s", rootDirectory);
+    printf("\n");
+    printf("%s", getRelativeToRootPath(getCurrentAbsolutePath()));
     return 1;
 }

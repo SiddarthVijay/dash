@@ -68,9 +68,13 @@ char *getRelativeToRootPath(char *path)
 
     if (isDifferent == 0)
     {
+        char temp[1];
         strcpy(relativePath, "~");
         for (; index < strlen(path); ++index)
-            strcat(relativePath, path[index]);
+        {
+            temp[0] = path[index];
+            strcat(relativePath, temp);
+        }
     }
 
     return relativePath;
