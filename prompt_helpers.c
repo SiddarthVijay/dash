@@ -31,22 +31,27 @@ char *getCurrentUser()
     return CURRENT_USER;
 }
 
+// Returns cwd
 char *getCurrentAbsolutePath()
 {
     char *abslouteCWD = malloc(BIG_SIZE * sizeof(char));
     getcwd(abslouteCWD, BIG_SIZE);
+    receivedCheck(abslouteCWD);
 
     return abslouteCWD;
 }
 
-// //ABS_PATH
-// valid_check = getcwd(ABS_PATH, 1000000);
-// validity(valid_check);
+// Returns path relative to the shell root dir
+char *getRelativeToRootPath(char *path)
+{
+    char *relativePath = malloc(BIG_SIZE * sizeof(char));
 
-// //REL_PATH
-// DIR *directory;
-// directory = opendir(ABS_PATH);
-// if (directory == NULL)
-// {
-//     perror("Error : ");
-// }
+    if (!strcmp(rootDirectory, path))
+    {
+        strcpy(relativePath, "~");
+    }
+    else if (strlen(path) < strlen(rootDirectory))
+    {
+        strcpy(relativePath, path);
+    }
+}
