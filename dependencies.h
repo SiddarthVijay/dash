@@ -1,5 +1,4 @@
-// In-built libraries
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/utsname.h>
+#include "libraries.h"
+
+#include "helpers.h"
+#include "prompt.h"

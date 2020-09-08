@@ -1,3 +1,3 @@
 #include "libraries.h"
 
-char *getSystemName();
+void clearScreen();

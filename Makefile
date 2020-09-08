@@ -1,9 +1,9 @@
 CC=gcc
-DEPS = dependencies.h globalconstants.h prompt.h
-OBJ = main.c prompt_helpers.c
+DEPS = libraries.h dependencies.h globalconstants.h helpers.h prompt.h
+OBJ = main.c helpers.c prompt_helpers.c
 
 %.o: %.c $(DEPS)
 		$(CC) -c -o $@ $< $(CFLAGS)
 
-shell: $(OBJ)
+dash: $(OBJ)
 		gcc -o $@ $^ $(CFLAGS)
