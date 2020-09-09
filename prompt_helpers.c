@@ -81,12 +81,13 @@ char *getRelativeToRootPath(char *path)
     return relativePath;
 }
 
-void presentPrompt(char *path)
+void presentPrompt()
 {
     CURRENT_SYSTEM = getSystemName();
     CURRENT_USER = getCurrentUser();
+    char *relPath = getRelativeToRootPath(getCurrentAbsolutePath());
 
-    printf("%s%s@%s%s : %s%s ", YELLOW, CURRENT_USER, RED, CURRENT_SYSTEM, CYAN, path);
+    printf("%s%s@%s%s : %s%s ", YELLOW, CURRENT_USER, RED, CURRENT_SYSTEM, BLUE, relPath);
     printf(RESET);
 
     return;

@@ -3,9 +3,9 @@
 int main()
 {
     setRootDirectory(getCurrentAbsolutePath());
+
     clearScreen();
-    printf("%s", getCurrentAbsolutePath());
-    printf("\n");
-    printf("%s", getRelativeToRootPath(getCurrentAbsolutePath()));
+
+    presentPrompt();
     return 1;
 }
