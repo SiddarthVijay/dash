@@ -3,7 +3,6 @@
 int main()
 {
     clearScreen();
-    printf("%s", getRelativeToRootPath(getCurrentAbsolutePath()));
-
+    printf("%s", getCurrentAbsolutePath());
     return 1;
 }
