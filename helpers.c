@@ -92,12 +92,12 @@ char **parseCmd(char *cmd)
 void executeShell(char **cmd)
 {
     if (cmd[0] == &newline)
+        ;
+    else if (!strcmp(cmd[0], "clear"))
+        clearScreen();
+    else if (!strcmp(cmd[0], "cd"))
     {
         ;
-    }
-    else if (!strcmp(cmd[0], "clear"))
-    {
-        clearScreen();
     }
     return;
 }
