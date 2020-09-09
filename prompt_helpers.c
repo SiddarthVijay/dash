@@ -68,11 +68,11 @@ char *getRelativeToRootPath(char *path)
 
     if (isDifferent == 0)
     {
-        // Just fixing the warning cuz strcat expects both parameters to be pointers to null-terminated strings
-        char temp[1];
         strcpy(relativePath, "~");
         for (; index < strlen(path); ++index)
         {
+            // Clearing warning as strcat expects both parameters to be pointers to null-terminated strings
+            char temp[1];
             temp[0] = path[index];
             strcat(relativePath, temp);
         }
