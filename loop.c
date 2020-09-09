@@ -3,8 +3,8 @@
 void shellLoop()
 {
     char *cmdString;
-    char **parseCmd;
+    char **parsedCmd;
     cmdString = readCmd();
-    parseCmd = parsedCmd(cmdString);
+    parsedCmd = parseCmd(cmdString);
     executeShell(parsedCmd);
 }

@@ -41,11 +41,63 @@ char *readCmd()
     return cmd;
 }
 
+int newline = 0;
+int charBufferSize = 128;
+char **tokens;
+char *token_pointers;
+int totalArguments;
+
 char **parseCmd(char *cmd)
 {
+    free(tokens);
+    token_pointers = NULL;
+
+    // Allocate buffer size and memory
+    int charBuffer = charBufferSize;
+    tokens = malloc(charBuffer * sizeof(char *));
+
+    // check_validity_parse(tokens);
+
+    // Split input line into words
+    // token_pointers --> gives the pointers to beginning of each token
+    // tokens --> saves the list of pointers in array of pointers
+    token_pointers = strtok(cmd, DELIMITERS);
+    totalArguments = 0;
+    while (token_pointers != NULL)
+    {
+        tokens[totalArguments] = token_pointers;
+        totalArguments++;
+
+        // Reallocate memory when necessary
+        if (totalArguments >= charBuffer)
+        {
+            charBuffer += charBufferSize;
+            tokens = realloc(tokens, charBuffer * sizeof(char *));
+            // check_validity_parse(tokens);
+        }
+
+        token_pointers = strtok(NULL, DELIMITERS);
+    }
+    if (totalArguments == 0)
+    {
+        tokens[0] = &newline;
+    }
+    else
+    {
+        tokens[totalArguments] = NULL;
+    }
+    return tokens;
 }
 
 void executeShell(char **cmd)
 {
+    if (cmd[0] == &newline)
+    {
+        ;
+    }
+    else if (!strcmp(cmd[0], "clear"))
+    {
+        clearScreen();
+    }
     return;
 }

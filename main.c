@@ -2,6 +2,9 @@
 
 int main()
 {
+    clearScreen();
+    setRootDirectory(getCurrentAbsolutePath());
+
     while (1)
     {
         presentPrompt();
