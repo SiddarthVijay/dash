@@ -2,10 +2,10 @@
 
 int main()
 {
-    setRootDirectory(getCurrentAbsolutePath());
-
-    clearScreen();
-
-    presentPrompt();
+    while (1)
+    {
+        presentPrompt();
+        shellLoop();
+    }
     return 1;
 }

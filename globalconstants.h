@@ -9,4 +9,6 @@
 #define BIG_SIZE 1000
 #define MAX_SIZE 100000
 
+#define DELIMITERS " \t\r\n\a"
+
 char *rootDirectory;

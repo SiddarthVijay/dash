@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include "prompt.h"
 #include "globalconstants.h"
 
 // Clear terminal screen
@@ -22,5 +23,29 @@ void setRootDirectory(char *root)
 {
     rootDirectory = root;
 
+    return;
+}
+
+void shellSetup()
+{
+    clearScreen();
+    setRootDirectory(getCurrentAbsolutePath());
+}
+
+char *readCmd()
+{
+    int cmd_size = 0;
+    char *cmd = NULL;
+    getline(&cmd, &cmd_size, stdin);
+
+    return cmd;
+}
+
+char **parseCmd(char *cmd)
+{
+}
+
+void executeShell(char **cmd)
+{
     return;
 }
