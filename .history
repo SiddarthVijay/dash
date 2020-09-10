@@ -23,3 +23,10 @@ pwd
 cd ..
 pwd
 clear
+ls
+ls ..
+cd ..
+ls
+ls ~
+history
+history 4

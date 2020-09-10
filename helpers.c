@@ -174,12 +174,9 @@ void executeShell()
             changeDirectory();
         }
     }
-    else if (!strcmp(parsedCmd[0], "cd"))
+    else if (!strcmp(parsedCmd[0], "ls"))
     {
-        if (argumentMismatchCheckGreater(2) == 0)
-        {
-            changeDirectory();
-        }
+        ls();
     }
     else
     {
