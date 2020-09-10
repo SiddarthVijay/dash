@@ -1,8 +1,8 @@
 #include "history.h"
 
-void setHistoryFile()
+void setHistoryFile(void *root)
 {
-    historyFile = rootDirectory;
+    historyFile = root;
     strcat(historyFile, "/.history");
 
     return;

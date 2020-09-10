@@ -4,7 +4,7 @@ int main()
 {
     clearScreen();
     setRootDirectory(getCurrentAbsolutePath());
-    setHistoryFile();
+    setHistoryFile(getCurrentAbsolutePath());
 
     while (1)
     {
