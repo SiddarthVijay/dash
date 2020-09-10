@@ -96,3 +96,15 @@ $ cd ~
 $ pwd
 /home/siddarth/Workspace/C/dash
 ```
+
+## Installation
+```
+git clone https://github.com/SiddarthVijay/dash.git
+cd dash
+make
+```
+
+## Getting Started
+```
+./dash
+```
