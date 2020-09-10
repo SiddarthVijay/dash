@@ -2,6 +2,7 @@
 #include "prompt.h"
 #include "globalconstants.h"
 #include "history.h"
+#include "pwd.h"
 
 // Clear terminal screen
 void clearScreen()
@@ -105,6 +106,8 @@ void executeShell(char **cmd)
             hisArg = atoi(cmd[1]);
         printHistory(hisArg);
     }
+    else if (!strcmp(cmd[0], "pwd"))
+        printPwd();
     else if (!strcmp(cmd[0], "cd"))
     {
         ;
