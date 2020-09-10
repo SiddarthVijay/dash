@@ -121,6 +121,11 @@ void executeShell(char **cmd)
 {
     if (cmd[0] == &newline)
         ;
+    if (!strcmp(cmd[0], "quit"))
+    {
+        if (argumentMismatchCheckEqual(1) == 0)
+            exit(EXIT_SUCCESS);
+    }
     else if (!strcmp(cmd[0], "clear"))
     {
         if (argumentMismatchCheckEqual(1) == 0)

@@ -6,3 +6,8 @@ pwd
 history
 history 2
 history 2 2
+echo
+ls
+pwd
+pwd ads
+quit
