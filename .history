@@ -1,2 +1,8 @@
 pwd
 echo
+pwd
+pwd 12
+pwd 
+history
+history 2
+history 2 2

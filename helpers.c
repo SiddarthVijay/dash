@@ -91,23 +91,58 @@ char **parseCmd(char *cmd)
     return tokens;
 }
 
+int argumentMismatchCheckEqual(int correctArgCount)
+{
+    if (totalArguments != correctArgCount)
+    {
+        printf("Argument mismatch. Please try again.\n");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int argumentMismatchCheckGreater(int correctArgCount)
+{
+    if (totalArguments > correctArgCount)
+    {
+        printf("Argument mismatch. Please try again.\n");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 void executeShell(char **cmd)
 {
     if (cmd[0] == &newline)
         ;
     else if (!strcmp(cmd[0], "clear"))
-        clearScreen();
+    {
+        if (argumentMismatchCheckEqual(1) == 0)
+            clearScreen();
+    }
     else if (!strcmp(cmd[0], "history"))
     {
-        int hisArg;
-        if (cmd[1] == NULL)
-            hisArg = 10;
-        else
-            hisArg = atoi(cmd[1]);
-        printHistory(hisArg);
+        if (argumentMismatchCheckGreater(2) == 0)
+        {
+            int hisArg;
+            if (cmd[1] == NULL)
+                hisArg = 10;
+            else
+                hisArg = atoi(cmd[1]);
+            printHistory(hisArg);
+        }
     }
     else if (!strcmp(cmd[0], "pwd"))
-        printPwd();
+    {
+        if (argumentMismatchCheckEqual(1) == 0)
+            printPwd();
+    }
     else if (!strcmp(cmd[0], "cd"))
     {
         ;
