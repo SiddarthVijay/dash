@@ -86,6 +86,28 @@ void lsA(int pathIndex)
     free(files);
 }
 
+void filePermissionsDisplay(struct stat fileDesc)
+{
+    printf("%1s", (S_ISDIR(fileDesc.st_mode)) ? "d" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IRUSR) ? "r" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IWUSR) ? "w" : "-");
+    printf("%1s ", (fileDesc.st_mode & S_IXUSR) ? "x" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IRGRP) ? "r" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IWGRP) ? "w" : "-");
+    printf("%1s ", (fileDesc.st_mode & S_IXGRP) ? "x" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IROTH) ? "r" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IWOTH) ? "w" : "-");
+    printf("%1s", (fileDesc.st_mode & S_IXOTH) ? "x" : "-");
+}
+
+void ownerGroupDescriptions(struct stat fileDesc)
+{
+    printf("%2lld ", (long long)(fileDesc.st_nlink));
+    printf("%s ", (getpwuid(fileDesc.st_uid))->pw_name);
+    printf("%s ", (getgrgid(fileDesc.st_gid))->gr_name);
+    printf("%5lld ", (long long)fileDesc.st_size);
+}
+
 void lsL(int isA, int pathIndex)
 {
     char tempdir[100000];
@@ -120,15 +142,25 @@ void lsL(int isA, int pathIndex)
         }
     }
 
+    struct stat fileDesc;
+
     for (long long int i = 0; i < err; i++)
     {
-        if (isA)
+        if (isA == 0)
         {
             if (files[i]->d_name[0] == '.')
                 continue;
         }
-        else
+        if (stat(files[i]->d_name, &fileDesc) == 0)
+        {
+            filePermissionsDisplay(fileDesc);
+            ownerGroupDescriptions(fileDesc);
+
+            char clock[15];
+            strftime(clock, 15, "%h %d %H:%M", localtime(&fileDesc.st_mtime));
+            printf("%s ", clock);
             printf("%s\n", files[i]->d_name);
+        }
     }
     free(files);
 }
@@ -142,6 +174,18 @@ void lsChooser()
         {
             lsA(2);
         }
+        else if (!strcmp(parsedCmd[1], "-l"))
+        {
+            lsL(0, 2);
+        }
+        else if (!strcmp(parsedCmd[1], "-al"))
+        {
+            lsL(1, 2);
+        }
+        else if (!strcmp(parsedCmd[1], "-la"))
+        {
+            lsL(1, 2);
+        }
         else
         {
             lsNoFlag(1);
@@ -151,6 +195,5 @@ void lsChooser()
     {
         lsNoFlag(1);
     }
-
     return;
 }

@@ -1,34 +1,38 @@
 ls
-cd ..
-cd ..
-cd .
-ls
-ls ~
-cd ~
-ls
-exh
-history
-history 3
-quit
-ls
-ls
-ls
-ls -a
-quit
-ls
-ls ..
-ls .
-ls ~
-ls -a
-ls
-ls -a
-ls
-ls
 ls -a
 ls -a ~
 ls -a ..
-ls ..
+ls -l
+ls
+ls -l
+ls -la
+ls -l
+ls -al
+ L( •ls -la
+ls -l
+ls -l
+ls -la
+ls
+ls -l
+ls -la
+ls
+ls -la ~
+ls -la ..
+ls -l ..
 cd ..
-ls dash
-ls -a dash
+ls
+ls ..
+cd ~
+ls -l ..
+ls -la ..
+ls -a ..
+ls -l
+cd ..
+ls -l
+ls -la
+echo 12 qweqw
+eh
+echo
+pwd
+cd ~
 clear
