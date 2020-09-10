@@ -1,32 +1,12 @@
+ls
 cd ..
-cd ~
-cd ttestDir
-cd testDir
+cd ..
 cd .
-c ..
-cd ..
-ls
-clear
-sdf
-clear
-cd ..
-l
-ls
-echo ch
-clear
-history
-clear
-cd ~
-ls
-clear
-pwd
-cd ..
-pwd
-clear
-ls
-ls ..
-cd ..
 ls
 ls ~
+cd ~
+ls
+exh
 history
-history 4
+history 3
+quit

@@ -46,47 +46,51 @@ int newline = 0;
 int charBufferSize = 128;
 
 char **tokens;
-char *token_pointers;
+char *token;
 
 char **parseCmd(char *cmd)
 {
     free(tokens);
-    token_pointers = NULL;
+    token = NULL;
 
-    // Allocate buffer size and memory
     int charBuffer = charBufferSize;
     tokens = malloc(charBuffer * sizeof(char *));
 
-    // check_validity_parse(tokens);
-
-    // Split input line into words
-    // token_pointers --> gives the pointers to beginning of each token
-    // tokens --> saves the list of pointers in array of pointers
-    token_pointers = strtok(cmd, DELIMITERS);
-    totalArguments = 0;
-    while (token_pointers != NULL)
+    if (!tokens)
     {
-        tokens[totalArguments] = token_pointers;
+        fprintf(stderr, "Memory allocation failed while parsing: \n");
+        exit(EXIT_FAILURE);
+    }
+
+    token = strtok(cmd, DELIMITERS);
+    totalArguments = 0;
+    while (token != NULL)
+    {
+        tokens[totalArguments] = token;
         totalArguments++;
 
-        // Reallocate memory when necessary
         if (totalArguments >= charBuffer)
         {
             charBuffer += charBufferSize;
             tokens = realloc(tokens, charBuffer * sizeof(char *));
-            // check_validity_parse(tokens);
+            if (!tokens)
+            {
+                fprintf(stderr, "Memory allocation failed while parsing: \n");
+                exit(EXIT_FAILURE);
+            }
         }
 
-        token_pointers = strtok(NULL, DELIMITERS);
+        token = strtok(NULL, DELIMITERS);
     }
-    if (totalArguments == 0)
-    {
-        tokens[0] = &newline;
-    }
-    else
+    if (totalArguments != 0)
     {
         tokens[totalArguments] = NULL;
     }
+    else
+    {
+        tokens[0] = &newline;
+    }
+
     return tokens;
 }
 
