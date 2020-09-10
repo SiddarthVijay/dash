@@ -180,7 +180,7 @@ void executeShell()
     }
     else if (!strcmp(parsedCmd[0], "ls"))
     {
-        ls();
+        lsChooser();
     }
     else
     {

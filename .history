@@ -10,3 +10,25 @@ exh
 history
 history 3
 quit
+ls
+ls
+ls
+ls -a
+quit
+ls
+ls ..
+ls .
+ls ~
+ls -a
+ls
+ls -a
+ls
+ls
+ls -a
+ls -a ~
+ls -a ..
+ls ..
+cd ..
+ls dash
+ls -a dash
+clear

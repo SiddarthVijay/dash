@@ -1,4 +1,6 @@
 #include "globalconstants.h"
 #include "libraries.h"
 
-void ls();
+void lsNoFlag(int);
+void lsA(int);
+void lsChooser();
