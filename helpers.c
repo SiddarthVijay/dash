@@ -174,5 +174,17 @@ void executeShell()
             changeDirectory();
         }
     }
+    else if (!strcmp(parsedCmd[0], "cd"))
+    {
+        if (argumentMismatchCheckGreater(2) == 0)
+        {
+            changeDirectory();
+        }
+    }
+    else
+    {
+        printf("Invalid command\n");
+    }
+
     return;
 }
