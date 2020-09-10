@@ -1,9 +1,9 @@
+cd ..
+cd ~
+cd ttestDir
+cd testDir
+cd .
+c ..
+cd ..
 ls
-pwd
-echo
-echo hello
-echo hello great
-history
-echo hello
-echo hello this is great
-quit
+clear

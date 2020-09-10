@@ -167,5 +167,12 @@ void executeShell()
             printEcho();
         }
     }
+    else if (!strcmp(parsedCmd[0], "cd"))
+    {
+        if (argumentMismatchCheckGreater(2) == 0)
+        {
+            changeDirectory();
+        }
+    }
     return;
 }
