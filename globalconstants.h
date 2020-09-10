@@ -13,3 +13,8 @@
 
 char *rootDirectory;
 char *historyFile;
+
+char *cmdString;
+char **parsedCmd;
+
+int totalArguments;

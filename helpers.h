@@ -7,4 +7,5 @@ char *readCmd();
 char **parseCmd(char *);
 int argumentMismatchCheckEqual(int);
 int argumentMismatchCheckGreater(int);
-void executeShell(char **);
+int argumentMismatchCheckLesser(int);
+void executeShell();

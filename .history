@@ -1,13 +1,9 @@
-pwd
-echo
-pwd
-pwd 12
-pwd 
-history
-history 2
-history 2 2
-echo
 ls
 pwd
-pwd ads
+echo
+echo hello
+echo hello great
+history
+echo hello
+echo hello this is great
 quit

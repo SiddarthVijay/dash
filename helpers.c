@@ -1,8 +1,7 @@
 #include "helpers.h"
 #include "prompt.h"
 #include "globalconstants.h"
-#include "history.h"
-#include "pwd.h"
+#include "commands.h"
 
 // Clear terminal screen
 void clearScreen()
@@ -45,9 +44,9 @@ char *readCmd()
 
 int newline = 0;
 int charBufferSize = 128;
+
 char **tokens;
 char *token_pointers;
-int totalArguments;
 
 char **parseCmd(char *cmd)
 {
@@ -117,40 +116,56 @@ int argumentMismatchCheckGreater(int correctArgCount)
     }
 }
 
-void executeShell(char **cmd)
+int argumentMismatchCheckLesser(int correctArgCount)
 {
-    if (cmd[0] == &newline)
+    if (totalArguments < correctArgCount)
+    {
+        printf("Argument mismatch. Please try again.\n");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void executeShell()
+{
+    if (parsedCmd[0] == &newline)
         ;
-    if (!strcmp(cmd[0], "quit"))
+    if (!strcmp(parsedCmd[0], "quit"))
     {
         if (argumentMismatchCheckEqual(1) == 0)
             exit(EXIT_SUCCESS);
     }
-    else if (!strcmp(cmd[0], "clear"))
+    else if (!strcmp(parsedCmd[0], "clear"))
     {
         if (argumentMismatchCheckEqual(1) == 0)
             clearScreen();
     }
-    else if (!strcmp(cmd[0], "history"))
+    else if (!strcmp(parsedCmd[0], "history"))
     {
         if (argumentMismatchCheckGreater(2) == 0)
         {
             int hisArg;
-            if (cmd[1] == NULL)
+            if (parsedCmd[1] == NULL)
                 hisArg = 10;
             else
-                hisArg = atoi(cmd[1]);
+                hisArg = atoi(parsedCmd[1]);
             printHistory(hisArg);
         }
     }
-    else if (!strcmp(cmd[0], "pwd"))
+    else if (!strcmp(parsedCmd[0], "pwd"))
     {
         if (argumentMismatchCheckEqual(1) == 0)
             printPwd();
     }
-    else if (!strcmp(cmd[0], "cd"))
+    else if (!strcmp(parsedCmd[0], "echo"))
     {
-        ;
+        if (argumentMismatchCheckLesser(2) == 0)
+        {
+            printEcho();
+        }
     }
     return;
 }
