@@ -1,48 +1,80 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define BIG_SIZE 1000
-// Returns cwd
+#include "libraries.h"
+
+char *readCmd()
+{
+    int cmd_size = 0;
+    char *cmd = NULL;
+    getline(&cmd, &cmd_size, stdin);
+
+    return cmd;
+}
+
 char *getCurrentAbsolutePath()
 {
-    char *abslouteCWD = malloc(BIG_SIZE * sizeof(char));
-    getcwd(abslouteCWD, BIG_SIZE);
-    receivedCheck(abslouteCWD);
+    char *abslouteCWD = malloc(1000 * sizeof(char));
+    getcwd(abslouteCWD, 1000);
 
     return abslouteCWD;
 }
 
-// Returns path relative to the shell root dir
-char *getRelativeToRootPath(char *path)
+char *outFile;
+
+void addHistory(char *cmd)
 {
-    char *relativePath = malloc(BIG_SIZE * sizeof(char));
 
-    if (!strcmp(rootDirectory, path))
-    {
-        strcpy(relativePath, "~");
-    }
-    else if (strlen(path) < strlen(rootDirectory))
-    {
-        strcpy(relativePath, path);
-    }
+    strcat(outFile, "/.history");
+    printf("%s", outFile);
 
-    int isDifferent = 0;
-    int index = 0;
-    for (; index < strlen(rootDirectory); ++index)
+    FILE *fptr;
+
+    fptr = fopen(outFile, "a+");
+    if (fptr == NULL)
     {
-        if (rootDirectory[index] != path[index])
+        printf("Error!");
+        exit(1);
+    }
+    fprintf(fptr, "%s", cmd);
+    fclose(fptr);
+}
+
+void printHistory(int n)
+{
+    FILE *file = fopen(outFile, "r");
+    if (file != NULL)
+    {
+        int i = 0;
+        char line[128];
+        while (fgets(line, sizeof line, file) != NULL)
         {
-            isDifferent = 1;
-            break;
+            if (i >= n)
+                break;
+            else
+                i++;
+            fputs(line, stdout);
         }
+        fclose(file);
     }
-
-    if (isDifferent == 0)
+    else
     {
-        strcpy(relativePath, "~");
-        for (; index < strlen(path); ++index)
-            strcat(relativePath, path[index]);
+        perror(outFile);
+    }
+}
+
+int main()
+{
+    while (1)
+    {
+        char *test = readCmd();
+        outFile = getCurrentAbsolutePath();
+        addHistory(test);
+
+        printf("Printing new history:");
+
+        printHistory(10);
     }
 
-    return relativePath;
+    return 1;
 }

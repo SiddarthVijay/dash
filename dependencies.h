@@ -4,3 +4,4 @@
 #include "helpers.h"
 #include "prompt.h"
 #include "loop.h"
+#include "history.h"

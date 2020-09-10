@@ -12,3 +12,4 @@
 #define DELIMITERS " \t\r\n\a"
 
 char *rootDirectory;
+char *historyFile;
