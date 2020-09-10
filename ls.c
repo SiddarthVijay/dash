@@ -97,15 +97,15 @@ void filePermissionsDisplay(struct stat fileDesc)
     printf("%1s ", (fileDesc.st_mode & S_IXGRP) ? "x" : "-");
     printf("%1s", (fileDesc.st_mode & S_IROTH) ? "r" : "-");
     printf("%1s", (fileDesc.st_mode & S_IWOTH) ? "w" : "-");
-    printf("%1s", (fileDesc.st_mode & S_IXOTH) ? "x" : "-");
+    printf("%1s ", (fileDesc.st_mode & S_IXOTH) ? "x" : "-");
 }
 
 void ownerGroupDescriptions(struct stat fileDesc)
 {
-    printf("%2lld ", (long long)(fileDesc.st_nlink));
-    printf("%s ", (getpwuid(fileDesc.st_uid))->pw_name);
-    printf("%s ", (getgrgid(fileDesc.st_gid))->gr_name);
-    printf("%5lld ", (long long)fileDesc.st_size);
+    printf("%2lld  ", (long long)(fileDesc.st_nlink));
+    printf("%s  ", (getpwuid(fileDesc.st_uid))->pw_name);
+    printf("%s  ", (getgrgid(fileDesc.st_gid))->gr_name);
+    printf("%7lld  ", (long long)fileDesc.st_size);
 }
 
 void lsL(int isA, int pathIndex)
@@ -158,8 +158,8 @@ void lsL(int isA, int pathIndex)
 
             char clock[15];
             strftime(clock, 15, "%h %d %H:%M", localtime(&fileDesc.st_mtime));
-            printf("%s ", clock);
-            printf("%s\n", files[i]->d_name);
+            printf("%s  ", clock);
+            printf("%s \n", files[i]->d_name);
         }
     }
     free(files);
